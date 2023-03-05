@@ -36,6 +36,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun performSignUp() {
         val email = binding.email.text.toString()
         val password = binding.password.text.toString()
+        val repeatPassword = binding.repeatPassword.text.toString()
 
         when {
             email.isBlank() -> {
@@ -58,16 +59,23 @@ class RegisterActivity : AppCompatActivity() {
                 ).show()
                 binding.password.requestFocus()
             }
+            repeatPassword != password -> {
+                Toast.makeText(
+                    baseContext,
+                    "Пароли не совпадают",
+                    Toast.LENGTH_SHORT
+                ).show()
+                binding.repeatPassword.requestFocus()
+            }
             else -> {
                 createUser(email, password)
             }
         }
-
     }
 
     private fun createUser(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener(this) {
                 auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
                     if (!it.isSuccessful){
                         Toast.makeText(

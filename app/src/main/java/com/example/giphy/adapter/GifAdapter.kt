@@ -1,6 +1,5 @@
 package com.example.giphy.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,10 @@ import com.example.giphy.R
 import com.example.giphy.databinding.GifItemBinding
 import com.example.giphy.model.GifEntity
 
-class GifAdapter(private val listener: Listener) : RecyclerView.Adapter<GifAdapter.PlantHolder>() {
-    private val gifsList = ArrayList<GifEntity>()
-    var counter = 0
+class GifAdapter(private val listener: Listener) : RecyclerView.Adapter<GifAdapter.GifHolder>() {
+    private val gifsList: MutableList<GifEntity> = ArrayList()
 
-    class PlantHolder(item: View) : RecyclerView.ViewHolder(item) {
-
+    class GifHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = GifItemBinding.bind(item)
         fun bind(gif: GifEntity, listener: Listener) = with(binding) {
             Glide
@@ -30,12 +27,12 @@ class GifAdapter(private val listener: Listener) : RecyclerView.Adapter<GifAdapt
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GifHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.gif_item, parent, false)
-        return PlantHolder(view)
+        return GifHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PlantHolder, position: Int) {
+    override fun onBindViewHolder(holder: GifHolder, position: Int) {
         holder.bind(gifsList[position], listener)
     }
 
@@ -43,20 +40,13 @@ class GifAdapter(private val listener: Listener) : RecyclerView.Adapter<GifAdapt
         return gifsList.size
     }
 
-    fun addGif(gif: GifEntity) {
-        gifsList.add(gif)
-        notifyDataSetChanged()
-    }
-
     fun setGifsListItems(gifs: MutableList<GifEntity>, isNewWord: Boolean) {
-        if(isNewWord) gifsList.clear()
-
+        if (isNewWord) gifsList.clear()
         gifsList.addAll(gifs)
         notifyDataSetChanged()
-
     }
 
-    interface Listener{
+    interface Listener {
         fun onClick(gif: GifEntity)
     }
 }

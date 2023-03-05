@@ -22,7 +22,7 @@ interface RetrofitService {
         private var API_KEY = "PyUs0cZ10ht02e0X1z2Bm2eUxQVjcypA"
         private var BUNDLE = "messaging_non_clips"
         private var BASE_URL = "https://api.giphy.com/v1/gifs/"
-        var retrofitService: RetrofitService? = null
+        private var retrofitService: RetrofitService? = null
 
         fun getInstance(): RetrofitService {
             if (retrofitService == null) {

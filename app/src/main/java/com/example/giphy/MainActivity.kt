@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +24,6 @@ class MainActivity : AppCompatActivity(), GifAdapter.Listener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainRepository: MainRepository
     private val adapter = GifAdapter(this)
-
 
     private var offset = 0
     private var query = ""
@@ -61,24 +59,25 @@ class MainActivity : AppCompatActivity(), GifAdapter.Listener {
             }
         })
 
+        /*
+           Пагинация работает некорректно
+            (при повторном запросе гифки повторяются по 6-7 раз)
+         */
         binding.gifsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
                     isNewWord = false
                     offset += 25
-                    loadGifs()
-                    Toast.makeText(this@MainActivity, "Last", Toast.LENGTH_SHORT).show()
-                    Log.d("offset", offset.toString())
+                    viewModel.getGifs(query, offset)
                 }
             }
         })
     }
 
     private fun loadGifs() {
-        viewModel = ViewModelProvider(
-            this, MyViewModelFactory(mainRepository)
-        )[MainViewModel::class.java]
+        viewModel =
+            ViewModelProvider(this, MyViewModelFactory(mainRepository))[MainViewModel::class.java]
         viewModel.gifData.observe(this) {
             val gifs = mutableListOf<GifEntity>()
             for (i in 0 until it.data.size) {

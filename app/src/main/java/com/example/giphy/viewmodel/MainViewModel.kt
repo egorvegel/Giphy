@@ -1,6 +1,5 @@
 package com.example.giphy.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.giphy.model.DataGifEntity
@@ -9,7 +8,7 @@ import kotlinx.coroutines.*
 
 class MainViewModel constructor(private val mainRepository: MainRepository) : ViewModel() {
     val errorMessage = MutableLiveData<String>()
-    val gifData = MutableLiveData<DataGifEntity>()
+    var gifData = MutableLiveData<DataGifEntity>()
     var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")

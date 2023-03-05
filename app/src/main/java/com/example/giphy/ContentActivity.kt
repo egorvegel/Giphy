@@ -1,7 +1,7 @@
 package com.example.giphy
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.giphy.databinding.ActivityContentBinding
 import com.example.giphy.model.GifEntity
@@ -25,6 +25,10 @@ class ContentActivity : AppCompatActivity() {
                 .asGif()
                 .load(item.url)
                 .into(holder)
+        }
+
+        binding.back.setOnClickListener {
+            finish()
         }
     }
 }

@@ -6,11 +6,14 @@
     <string name="register">Регистрация</string>
     <string name="email">Email</string>
     <string name="password">Пароль</string>
+    <string name="repeat_password">Повторите пароль</string>
     <string name="signUp">Зарегистрироваться</string>
     <string name="signIn">Войти</string>
 
-    <string name="no_user">Нет аккаунта?\nЗарегистрируйтесь</string>
-    <string name="have_user">Уже есть аккаунт?\nВойдите</string>
+    <string name="no_user">Нет аккаунта?</string>
+    <string name="regist">Зарегистрируйтесь</string>
+    <string name="have_user">Уже есть аккаунт?</string>
+    <string name="sign">Войдите</string>
 
     <string name="searchGif">Найдите любую гифку</string>
     <string name="load">Загрузить еще</string>
@@ -19,6 +22,7 @@
     <string name="id">id изображения:</string>
     <string name="title">Название изображения:</string>
     <string name="rating">Рэйтинг изображения:</string>
+    <string name="back">Назад</string>
 
 
 </resources>
