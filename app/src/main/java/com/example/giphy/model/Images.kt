@@ -2,10 +2,27 @@ package com.example.giphy.model
 
 data class Images(
     val fixed_height: FixedHeight,
-    val fixed_height_downsampled: FixedHeightDownsampled,
-    val fixed_height_small: FixedHeightSmall,
     val fixed_width: FixedWidth,
-    val fixed_width_downsampled: FixedWidthDownsampled,
-    val fixed_width_small: FixedWidthSmall,
-    val original: Original
+)
+
+data class FixedHeight(
+    val height: String,
+    val mp4: String,
+    val mp4_size: String,
+    val size: String,
+    val url: String,
+    val webp: String,
+    val webp_size: String,
+    val width: String
+)
+
+data class FixedWidth(
+    val height: String,
+    val mp4: String,
+    val mp4_size: String,
+    val size: String,
+    val url: String,
+    val webp: String,
+    val webp_size: String,
+    val width: String
 )

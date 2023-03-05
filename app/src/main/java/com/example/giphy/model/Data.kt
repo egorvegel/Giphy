@@ -1,7 +1,6 @@
 package com.example.giphy.model
 
 data class Data(
-    val analytics: Analytics,
     val analytics_response_payload: String,
     val bitly_gif_url: String,
     val bitly_url: String,
@@ -20,6 +19,5 @@ data class Data(
     val trending_datetime: String,
     val type: String,
     val url: String,
-    val user: User,
     val username: String
 )

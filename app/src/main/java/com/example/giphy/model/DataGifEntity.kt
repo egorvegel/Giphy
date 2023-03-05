@@ -1,7 +1,6 @@
 package com.example.giphy.model
 
-data class TestGifEntity(
+data class DataGifEntity(
     val `data`: List<Data>,
-    val meta: Meta,
     val pagination: Pagination
 )

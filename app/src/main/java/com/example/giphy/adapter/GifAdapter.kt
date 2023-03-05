@@ -1,15 +1,18 @@
-package com.example.giphy
+package com.example.giphy.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.giphy.R
 import com.example.giphy.databinding.GifItemBinding
 import com.example.giphy.model.GifEntity
 
-class GifAdapter(val listener: Listener) : RecyclerView.Adapter<GifAdapter.PlantHolder>() {
+class GifAdapter(private val listener: Listener) : RecyclerView.Adapter<GifAdapter.PlantHolder>() {
     private val gifsList = ArrayList<GifEntity>()
+    var counter = 0
 
     class PlantHolder(item: View) : RecyclerView.ViewHolder(item) {
 
@@ -45,10 +48,12 @@ class GifAdapter(val listener: Listener) : RecyclerView.Adapter<GifAdapter.Plant
         notifyDataSetChanged()
     }
 
-    fun setGifsListItems(imagesIds: MutableList<GifEntity>) {
-        gifsList.clear()
-        gifsList.addAll(imagesIds)
+    fun setGifsListItems(gifs: MutableList<GifEntity>, isNewWord: Boolean) {
+        if(isNewWord) gifsList.clear()
+
+        gifsList.addAll(gifs)
         notifyDataSetChanged()
+
     }
 
     interface Listener{
